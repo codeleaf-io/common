@@ -17,6 +17,7 @@
     </properties>
 
     <modules>
+        <module>behaviors</module>
         <module>utils</module>
     </modules>
 
