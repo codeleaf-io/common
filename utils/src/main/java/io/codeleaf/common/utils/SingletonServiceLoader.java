@@ -13,7 +13,7 @@ import java.util.ServiceLoader;
 public final class SingletonServiceLoader {
 
     /**
-     * Loads the specified service, for which exactly a one service must be registered.
+     * Loads the specified service, for which exactly one service must be registered.
      *
      * @param serviceClass the class of the service type
      * @param <T>          the type of the service
