@@ -6,7 +6,6 @@ package io.codeleaf.common.behaviors;
  * @param <K> the type of the keys in the cache
  * @param <V> the type of the values in the cache
  * @author tvburger@gmail.com
- * @version %I%, %G%
  * @since 0.1.0
  */
 public interface Cache<K, V> {

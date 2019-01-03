@@ -8,7 +8,6 @@ import java.util.ServiceLoader;
  * This class loads a specific service leveraging the ServiceLoader.
  *
  * @author tvburger@gmail.com
- * @version %I%, %G%
  * @since 0.1.0
  */
 public final class SingletonServiceLoader {
