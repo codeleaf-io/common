@@ -31,6 +31,11 @@
 
     <developers>
         <developer>
+            <name>Deepak Shingan</name>
+            <email>deepak.shingan@gmail.com</email>
+            <organization>Deepak Shingan</organization>
+        </developer>
+        <developer>
             <name>Tom Burger</name>
             <email>tvburger@gmail.com</email>
             <organization>TVBurger B.V.</organization>
@@ -88,7 +93,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>3.0.0</version>
+                        <version>3.0.1</version>
                         <executions>
                             <execution>
                                 <id>attach-javadocs</id>
