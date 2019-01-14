@@ -19,6 +19,7 @@
     <modules>
         <module>behaviors</module>
         <module>utils</module>
+        <module>libs/test</module>
     </modules>
 
     <developers>
