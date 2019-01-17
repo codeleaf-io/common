@@ -7,7 +7,7 @@ import java.util.*;
 import java.util.function.Supplier;
 
 /**
- * This class provides method references that can be dereferenced to obtain the referenced method.
+ * This class provides method references that can be de-referenced to obtain the referenced method.
  *
  * @author tvburger@gmail.com
  * @since 0.1.0
@@ -105,9 +105,9 @@ public final class MethodReferences {
     /**
      * Returns the method that was reference by the supplier.
      *
-     * @param methodReference a method reference created by {@link #reference(Class)}
+     * @param methodReference a method reference created by {@link #createProxy(Class)} or {@link #getProxy(Class)}
      * @return the Method that was referenced
-     * @throws IllegalArgumentException if the methodReference was not using {@link #reference(Class)}
+     * @throws IllegalArgumentException if the methodReference was not obtained through a proxy
      * @throws NullPointerException     if methodReference is <code>null</code>
      */
     public static Method derefence(Supplier<?> methodReference) {
