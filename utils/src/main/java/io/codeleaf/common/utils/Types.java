@@ -26,12 +26,10 @@ public final class Types {
         if (interfaceType.isAssignableFrom(instance.getClass())) {
             implementingInstance = instance;
         } else {
-            ForwardHandler handler = new ForwardHandler(instance);
             implementingInstance = Proxy.newProxyInstance(
                     interfaceType.getClassLoader(),
                     new Class<?>[]{interfaceType},
-                    handler);
-            handler.init(implementingInstance);
+                    new ForwardHandler(instance));
         }
         return cast(implementingInstance);
     }
@@ -49,14 +47,9 @@ public final class Types {
     private static final class ForwardHandler implements InvocationHandler {
 
         private final Object target;
-        private Object proxy;
 
-        public ForwardHandler(Object target) {
+        ForwardHandler(Object target) {
             this.target = target;
-        }
-
-        public void init(Object proxy) {
-            this.proxy = proxy;
         }
 
         @Override
