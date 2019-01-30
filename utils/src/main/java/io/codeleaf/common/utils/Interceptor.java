@@ -3,7 +3,6 @@ package io.codeleaf.common.utils;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -89,13 +88,7 @@ public final class Interceptor implements InvocationHandler {
         }
 
         public boolean equals(Method method) {
-            return methodName.equals(method.getName()) && methodArgsEquals(method.getParameterTypes());
-        }
-
-        private boolean methodArgsEquals(Class<?>[] parameterTypes) {
-            return parameterTypes == null && (this.parameterTypes == null || this.parameterTypes.length == 0)
-                    || parameterTypes != null && parameterTypes.length == 0 && (this.parameterTypes == null || this.parameterTypes.length == 0)
-                    || Arrays.equals(parameterTypes, this.parameterTypes);
+            return methodName.equals(method.getName()) && Types.methodArgsEquals(method.getParameterTypes(), parameterTypes);
         }
     }
 }
