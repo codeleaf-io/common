@@ -55,6 +55,7 @@ public final class Types {
         return false;
     }
 
+    // TODO: move to Methods
     public static boolean methodArgsEquals(Class<?>[] parameterTypes1, Class<?>[] parameterTypes2) {
         return (parameterTypes1 == null || parameterTypes1.length == 0) && (parameterTypes2 == null || parameterTypes2.length == 0)
                 || Arrays.equals(parameterTypes1, parameterTypes2);
