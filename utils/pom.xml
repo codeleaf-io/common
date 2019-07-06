@@ -16,7 +16,6 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>common-libs-test</artifactId>
-            <version>${project.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
