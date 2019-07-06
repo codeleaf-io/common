@@ -14,55 +14,11 @@ import java.util.function.Supplier;
  */
 public final class MethodReferences {
 
-    private static final class SetInvokedMethodHandler implements InvocationHandler {
-
-        @Override
-        public Object invoke(Object proxy, Method method, Object[] args) {
-            invokedMethod.set(method);
-            Class<?> returnType = method.getReturnType();
-            Object returnValue;
-            if (returnType.isPrimitive()) {
-                switch (returnType.getName()) {
-                    case "boolean":
-                        returnValue = false;
-                        break;
-                    case "byte":
-                        returnValue = (byte) 0x00;
-                        break;
-                    case "char":
-                        returnValue = (char) 0;
-                        break;
-                    case "short":
-                        returnValue = (short) 0;
-                        break;
-                    case "int":
-                        returnValue = 0;
-                        break;
-                    case "long":
-                        returnValue = 0L;
-                        break;
-                    case "float":
-                        returnValue = 0.0f;
-                        break;
-                    case "double":
-                        returnValue = 0.0;
-                        break;
-                    case "void":
-                        returnValue = null;
-                        break;
-                    default:
-                        throw new IllegalStateException("Unknown return type: " + returnType);
-                }
-            } else {
-                returnValue = null;
-            }
-            return returnValue;
-        }
-
+    private MethodReferences() {
     }
 
     private static final ThreadLocal<Method> invokedMethod = new ThreadLocal<>();
-    private static final InvocationHandler setInvokedMethodHandler = new SetInvokedMethodHandler();
+    private static final InvocationHandler setInvokedMethodHandler = (proxy, method, args) -> setMethod(method);
     private static final Map<Class<?>, Object> proxyMap = new HashMap<>();
 
     /**
@@ -102,6 +58,10 @@ public final class MethodReferences {
         return (T) proxyMap.computeIfAbsent(typeClass, MethodReferences::createProxy);
     }
 
+    public static Supplier<?> reference(Method method) {
+        return (Supplier<Object>) () -> setMethod(method);
+    }
+
     /**
      * Returns the method that was reference by the supplier.
      *
@@ -124,7 +84,49 @@ public final class MethodReferences {
         }
     }
 
-    private MethodReferences() {
+    private static Object getReturnValue(Method method) {
+        Class<?> returnType = method.getReturnType();
+        Object returnValue;
+        if (returnType.isPrimitive()) {
+            switch (returnType.getName()) {
+                case "boolean":
+                    returnValue = false;
+                    break;
+                case "byte":
+                    returnValue = (byte) 0x00;
+                    break;
+                case "char":
+                    returnValue = (char) 0;
+                    break;
+                case "short":
+                    returnValue = (short) 0;
+                    break;
+                case "int":
+                    returnValue = 0;
+                    break;
+                case "long":
+                    returnValue = 0L;
+                    break;
+                case "float":
+                    returnValue = 0.0f;
+                    break;
+                case "double":
+                    returnValue = 0.0;
+                    break;
+                case "void":
+                    returnValue = null;
+                    break;
+                default:
+                    throw new IllegalStateException("Unknown return type: " + returnType);
+            }
+        } else {
+            returnValue = null;
+        }
+        return returnValue;
     }
 
+    private static Object setMethod(Method method) {
+        invokedMethod.set(method);
+        return getReturnValue(method);
+    }
 }
