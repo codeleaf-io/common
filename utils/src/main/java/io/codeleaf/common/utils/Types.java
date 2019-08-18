@@ -36,6 +36,10 @@ public final class Types {
         return definesMethod(clazz, Modifier.isStatic(method.getModifiers()), method.getName(), method.getParameterTypes());
     }
 
+    public static boolean definesMethod(Class<?> clazz, String name, Class<?>... parameterTypes) {
+        return definesMethod(clazz, false, name, parameterTypes);
+    }
+
     public static boolean definesStaticMethod(Class<?> clazz, String name, Class<?>... parameterTypes) {
         return definesMethod(clazz, true, name, parameterTypes);
     }
