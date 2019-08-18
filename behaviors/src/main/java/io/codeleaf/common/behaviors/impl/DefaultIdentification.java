@@ -36,7 +36,7 @@ public class DefaultIdentification implements Identification {
 
     @Override
     public String toString() {
-        return String.format("Identification{%s, %s}", principal, uuid);
+        return String.format("%s(%s)", principal.getName(), uuid);
     }
 
     @Override
