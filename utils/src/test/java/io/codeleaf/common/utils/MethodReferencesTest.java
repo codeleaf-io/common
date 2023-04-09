@@ -1,7 +1,7 @@
 package io.codeleaf.common.utils;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Method;
 import java.util.function.Supplier;
@@ -18,7 +18,7 @@ public class MethodReferencesTest {
 
     }
 
-    public class TestImpl {
+    public static class TestImpl {
 
         public String getName() {
             return "abc";
@@ -35,22 +35,27 @@ public class MethodReferencesTest {
         Method result = MethodReferences.derefence(methodReference);
 
         // Then
-        Assert.assertEquals("getName", result.getName());
+        Assertions.assertEquals("getName", result.getName());
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testDereference_InvalidType() {
-        // Given
-        Supplier<?> methodReference = TestInterface::getNameStatic;
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            // Given
+            Supplier<?> methodReference = TestInterface::getNameStatic;
 
-        // When
-        Method result = MethodReferences.derefence(methodReference);
+            // When
+            MethodReferences.derefence(methodReference);
+        });
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testReference_NonInterface() {
-        // When
-        Supplier<?> result = MethodReferences.getProxy(TestImpl.class)::getName;
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+
+            // When
+            Supplier<?> result = MethodReferences.getProxy(TestImpl.class)::getName;
+        });
     }
 
 }
