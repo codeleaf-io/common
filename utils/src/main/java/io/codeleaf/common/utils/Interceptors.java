@@ -8,34 +8,40 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 
-public final class Interceptor implements InvocationHandler {
+public final class Interceptors {
 
-    private final Object target;
-    private final List<MethodBinding> methodBindings;
-
-    private Interceptor(Object target, List<MethodBinding> methodBindings) {
-        this.target = target;
-        this.methodBindings = methodBindings;
+    private Interceptors() {
     }
 
-    @Override
-    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        MethodBinding methodBinding = getMethodBinding(method);
-        return methodBinding == null ? method.invoke(target, args) : methodBinding.invoke(args);
-    }
+    public static final class Interceptor implements InvocationHandler {
 
-    public void addBinding(MethodBinding methodBinding) {
-        Objects.requireNonNull(methodBinding);
-        methodBindings.add(methodBinding);
-    }
+        private final Object target;
+        private final List<MethodBinding> methodBindings;
 
-    private MethodBinding getMethodBinding(Method method) {
-        for (MethodBinding methodBinding : methodBindings) {
-            if (methodBinding.equals(method)) {
-                return methodBinding;
-            }
+        private Interceptor(Object target, List<MethodBinding> methodBindings) {
+            this.target = target;
+            this.methodBindings = methodBindings;
         }
-        return null;
+
+        @Override
+        public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+            MethodBinding methodBinding = getMethodBinding(method);
+            return methodBinding == null ? method.invoke(target, args) : methodBinding.invoke(args);
+        }
+
+        public void addBinding(MethodBinding methodBinding) {
+            Objects.requireNonNull(methodBinding);
+            methodBindings.add(methodBinding);
+        }
+
+        private MethodBinding getMethodBinding(Method method) {
+            for (MethodBinding methodBinding : methodBindings) {
+                if (methodBinding.equals(method)) {
+                    return methodBinding;
+                }
+            }
+            return null;
+        }
     }
 
     public static <T> T create(Class<T> interfaceType, Object target) {
@@ -59,7 +65,7 @@ public final class Interceptor implements InvocationHandler {
         ((Interceptor) handler).addBinding(new MethodBinding(methodName, parameterTypes, function));
     }
 
-    public static class MethodBinding {
+    public static final class MethodBinding {
 
         private final String methodName;
         private final Class<?>[] parameterTypes;
