@@ -4,12 +4,12 @@ package io.codeleaf.common.utils;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
-public final class StringEncoder {
+public final class StringEncodings {
 
     public static final char ESCAPE_CHAR = '\\';
     public static final char FIELD_DELIMITER = ',';
 
-    private StringEncoder() {
+    private StringEncodings() {
     }
 
     public static String encodeMap(Map<String, String> stringMap) {
@@ -39,6 +39,10 @@ public final class StringEncoder {
         return stringMap;
     }
 
+    public static String encodeSet(Set<String> stringSet) {
+        return encodeList(new ArrayList<>(stringSet));
+    }
+
     public static String encodeList(List<String> stringList) {
         StringBuilder builder = new StringBuilder();
         for (String item : stringList) {
@@ -52,6 +56,10 @@ public final class StringEncoder {
         if (builder.length() > 0) {
             builder.deleteCharAt(builder.length() - 1);
         }
+    }
+
+    public static Set<String> decodeSet(String encodedStringSet) {
+        return new LinkedHashSet<>(decodeList(encodedStringSet));
     }
 
     public static List<String> decodeList(String encodedStringList) {
