@@ -1,5 +1,7 @@
 package io.codeleaf.common.utils;
 
+import io.codeleaf.common.utils.impl.ParameterizedTypeImpl;
+
 import java.lang.reflect.*;
 import java.util.Arrays;
 import java.util.Objects;
@@ -7,6 +9,10 @@ import java.util.Objects;
 public final class Types {
 
     private Types() {
+    }
+
+    public static Type cast(Class<?> rawType, Type... actualTypeArguments) {
+        return ParameterizedTypeImpl.create(rawType, actualTypeArguments);
     }
 
     @SuppressWarnings("unchecked")

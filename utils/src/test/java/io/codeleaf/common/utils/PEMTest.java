@@ -1,7 +1,7 @@
 package io.codeleaf.common.utils;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
@@ -17,7 +17,7 @@ public class PEMTest {
         String result = PublicKeys.toPEM(bytes, true);
 
         // Then
-        Assert.assertEquals(pem, result);
+        Assertions.assertEquals(pem, result);
     }
 
 }

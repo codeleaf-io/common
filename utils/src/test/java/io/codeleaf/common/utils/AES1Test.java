@@ -1,7 +1,7 @@
 package io.codeleaf.common.utils;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import javax.crypto.spec.SecretKeySpec;
 
@@ -17,6 +17,6 @@ public class AES1Test {
         String result = AES1.decrypt(encryptedMessage, secretKey);
 
         // Then
-        Assert.assertEquals("message", result);
+        Assertions.assertEquals("message", result);
     }
 }
