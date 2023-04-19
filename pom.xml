@@ -5,12 +5,12 @@
     <parent>
         <groupId>io.codeleaf.release</groupId>
         <artifactId>release</artifactId>
-        <version>0.1.0</version>
+        <version>0.9.0</version>
     </parent>
 
     <groupId>io.codeleaf.common</groupId>
     <artifactId>common</artifactId>
-    <version>0.1.0</version>
+    <version>0.9.0</version>
 
     <packaging>pom</packaging>
 
@@ -19,6 +19,10 @@
     <modules>
         <module>behaviors</module>
         <module>utils</module>
+        <module>libs/json</module>
+        <module>libs/json/impl</module>
+        <module>libs/logging</module>
+        <module>libs/logging/impl</module>
         <module>libs/test</module>
     </modules>
 
@@ -50,6 +54,26 @@
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>common-utils</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>common-libs-json</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>common-libs-json-impl</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>common-libs-logging</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>common-libs-logging-impl</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>

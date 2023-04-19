@@ -4,12 +4,12 @@ package io.codeleaf.common.utils;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
-public final class StringEncodings {
+public final class StringEncoder {
 
     public static final char ESCAPE_CHAR = '\\';
     public static final char FIELD_DELIMITER = ',';
 
-    private StringEncodings() {
+    private StringEncoder() {
     }
 
     public static String encodeMap(Map<String, String> stringMap) {

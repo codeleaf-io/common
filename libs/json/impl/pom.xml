@@ -6,17 +6,26 @@
         <groupId>io.codeleaf.common</groupId>
         <artifactId>common</artifactId>
         <version>0.9.0</version>
+        <relativePath>../../../pom.xml</relativePath>
     </parent>
 
-    <artifactId>common-utils</artifactId>
+    <artifactId>common-libs-json-impl</artifactId>
 
-    <name>Common :: Utilities</name>
+    <name>Common :: Libs :: JSON :: Implementation</name>
+
+    <properties>
+        <json.version>2.0.1</json.version>
+    </properties>
 
     <dependencies>
         <dependency>
+            <groupId>org.glassfish</groupId>
+            <artifactId>jakarta.json</artifactId>
+            <version>${json.version}</version>
+        </dependency>
+        <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>common-behaviors</artifactId>
-            <version>${project.version}</version>
+            <artifactId>common-libs-json</artifactId>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>

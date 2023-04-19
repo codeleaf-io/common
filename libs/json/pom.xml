@@ -1,0 +1,34 @@
+<project>
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>io.codeleaf.common</groupId>
+        <artifactId>common</artifactId>
+        <version>0.9.0</version>
+        <relativePath>../../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>common-libs-json</artifactId>
+
+    <name>Common :: Libs :: JSON</name>
+
+    <properties>
+        <json-api.version>2.1.1</json-api.version>
+        <json-bind-api.version>3.0.0</json-bind-api.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>jakarta.json</groupId>
+            <artifactId>jakarta.json-api</artifactId>
+            <version>${json-api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.json.bind</groupId>
+            <artifactId>jakarta.json.bind-api</artifactId>
+            <version>${json-bind-api.version}</version>
+        </dependency>
+    </dependencies>
+
+</project>

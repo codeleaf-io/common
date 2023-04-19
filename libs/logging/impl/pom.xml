@@ -6,17 +6,22 @@
         <groupId>io.codeleaf.common</groupId>
         <artifactId>common</artifactId>
         <version>0.9.0</version>
+        <relativePath>../../../pom.xml</relativePath>
     </parent>
 
-    <artifactId>common-utils</artifactId>
+    <artifactId>common-libs-logging-impl</artifactId>
 
-    <name>Common :: Utilities</name>
+    <name>Common :: Libs :: Logging :: Implementation</name>
+
+    <properties>
+        <slf4j-log4j.version>2.20.0</slf4j-log4j.version>
+    </properties>
 
     <dependencies>
         <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>common-behaviors</artifactId>
-            <version>${project.version}</version>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j2-impl</artifactId>
+            <version>${slf4j-log4j.version}</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
