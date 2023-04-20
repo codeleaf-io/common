@@ -20,6 +20,7 @@
         <module>behaviors</module>
         <module>utils</module>
         <module>libs/elastic</module>
+        <module>libs/inject</module>
         <module>libs/json</module>
         <module>libs/json/impl</module>
         <module>libs/logging</module>
@@ -60,6 +61,11 @@
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>common-libs-elastic</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>common-libs-inject</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
