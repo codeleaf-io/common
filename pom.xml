@@ -19,6 +19,7 @@
     <modules>
         <module>behaviors</module>
         <module>utils</module>
+        <module>libs/elastic</module>
         <module>libs/json</module>
         <module>libs/json/impl</module>
         <module>libs/logging</module>
