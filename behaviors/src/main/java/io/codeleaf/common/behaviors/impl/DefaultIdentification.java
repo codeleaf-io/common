@@ -2,6 +2,7 @@ package io.codeleaf.common.behaviors.impl;
 
 import io.codeleaf.common.behaviors.Identification;
 
+import java.net.URI;
 import java.security.Principal;
 import java.security.PublicKey;
 import java.util.Objects;
@@ -12,11 +13,13 @@ public class DefaultIdentification implements Identification {
     private final Principal principal;
     private final PublicKey publicKey;
     private final UUID uuid;
+    private final URI uri;
 
-    public DefaultIdentification(Principal principal, PublicKey publicKey, UUID uuid) {
+    public DefaultIdentification(Principal principal, PublicKey publicKey, UUID uuid, URI uri) {
         this.principal = principal;
         this.publicKey = publicKey;
         this.uuid = uuid;
+        this.uri = uri;
     }
 
     @Override
@@ -30,8 +33,13 @@ public class DefaultIdentification implements Identification {
     }
 
     @Override
-    public UUID getUuid() {
+    public UUID getInstanceId() {
         return uuid;
+    }
+
+    @Override
+    public URI getURI() {
+        return uri;
     }
 
     @Override

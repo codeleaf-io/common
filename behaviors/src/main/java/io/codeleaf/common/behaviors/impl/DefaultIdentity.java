@@ -3,6 +3,7 @@ package io.codeleaf.common.behaviors.impl;
 import io.codeleaf.common.behaviors.Identification;
 import io.codeleaf.common.behaviors.Identity;
 
+import java.net.URI;
 import java.security.Principal;
 import java.security.PrivateKey;
 import java.security.PublicKey;
@@ -35,8 +36,13 @@ public class DefaultIdentity implements Identity {
     }
 
     @Override
-    public UUID getUuid() {
-        return identification.getUuid();
+    public UUID getInstanceId() {
+        return identification.getInstanceId();
+    }
+
+    @Override
+    public URI getURI() {
+        return identification.getURI();
     }
 
     @Override
@@ -46,7 +52,7 @@ public class DefaultIdentity implements Identity {
 
     @Override
     public String toString() {
-        return String.format("Identity{%s, %s}", identification.getPrincipal(), identification.getUuid());
+        return String.format("Identity{%s, %s}", identification.getPrincipal(), identification.getInstanceId());
     }
 
     @Override
